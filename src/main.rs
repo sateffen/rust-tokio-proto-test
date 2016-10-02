@@ -14,7 +14,7 @@ mod service;
 // now the compiler knows about all the sources we want to use, so lets start
 // first setup the uses we need. Here we need just the uses for setting up the
 // reactor and the proto pipeline server
-use bytes::BlockBuf;
+use bytes::buf::BlockBuf;
 use tokio_core::reactor::Core;
 use tokio_proto::{server, Framed, pipeline};
 

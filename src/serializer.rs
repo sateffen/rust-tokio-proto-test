@@ -1,5 +1,6 @@
 use typedefs::Frame;
-use bytes::{BlockBuf, MutBuf};
+use bytes::MutBuf;
+use bytes::buf::BlockBuf;
 use tokio_proto::{Serialize, pipeline};
 
 // this struct is our serializer. This will serialize the answer from

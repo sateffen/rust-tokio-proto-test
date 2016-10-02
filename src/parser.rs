@@ -1,5 +1,6 @@
 use typedefs::Frame;
-use bytes::{BlockBuf, Buf};
+use bytes::{Buf};
+use bytes::buf::BlockBuf;
 use tokio_proto::{Parse, pipeline};
 use std::io::{Error, ErrorKind};
 use std::str;

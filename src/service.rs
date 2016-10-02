@@ -2,7 +2,7 @@ use typedefs::{FrameMessage, FrameBody, FrameError};
 use futures::{Future, Async, finished};
 use futures::stream::Empty;
 use tokio_service::Service;
-use tokio_proto::pipeline;
+use tokio_proto::Message;
 
 // This service is used to manage our protocol server. It'll receive each
 // message from the frames, so we can actually work with them.
@@ -12,7 +12,7 @@ impl Service for PipeService {
     // first we setup the needed types
     type Request = FrameMessage;
     // The Response type is every time a pipeline::Message
-    type Response = pipeline::Message<FrameMessage, Empty<FrameBody, FrameError>>;
+    type Response = Message<FrameMessage, Empty<FrameBody, FrameError>>;
     type Error = FrameError;
     // a special thing is this future. We have to box it, because we can't determine
     // the actual size of the Self::Response at compile type
@@ -30,7 +30,7 @@ impl Service for PipeService {
             // pipeline::Message::WithBody(data, futures::stream::empty::<(), Error>())
             
             // but you can use this. We send data without a body, which works as expected
-            pipeline::Message::WithoutBody(data)
+            Message::WithoutBody(data)
         ).boxed()
     }
     
